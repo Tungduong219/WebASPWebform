@@ -1,0 +1,63 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="GiaoDienChung.Master.cs" Inherits="BanVeXemPhim.GiaoDienChung" %>
+
+<!DOCTYPE html>
+<html lang="vi">
+<head runat="server">
+    <meta charset="utf-8" />
+    <title>
+        <asp:ContentPlaceHolder ID="TieuDe" runat="server" />
+    </title>
+    <link runat="server" href="~/ChuDeMacDinh/site.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css" crossorigin="anonymous" />
+
+</head>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const btn = document.getElementById('searchBtn');
+            const box = document.querySelector('.search-box');
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
+                box.classList.toggle('active');
+                if (box.classList.contains('active')) box.focus();
+            });
+        });
+    </script>
+
+<body>
+    <form id="form1" runat="server">
+        <header class="header">
+            <div class="header-inner">
+            <div class="logo">
+                <a runat="server" href="~/Trangchu/TrangChu.aspx">
+                    <img runat="server" src="~/TaiNguyen/HinhAnh/cinehublogo.png" alt="CineHub" />
+                </a>
+            </div>
+
+            <nav class="menu">
+                <a runat="server" href="~/Phim/DanhSachPhim.aspx">Phim</a>
+                <a runat="server" href="~/Rap/RapChieu.aspx">Rạp chiếu</a>
+                <a runat="server" href="~/Phim/TopPhim.aspx">Top Phim</a>
+                <a runat="server" href="~/Blog/BlogPhim.aspx">Blog Phim</a>
+                <a runat="server" href="~/Review/ReviewPhim.aspx">Review Phim</a>
+            </nav>
+
+            <div class="actions">
+                <input type="text" placeholder="Tìm kiếm phim..." class="search-box" />
+                <button type="button" id="searchBtn" aria-label="Tìm kiếm">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+                <a runat="server" href="~/DangNhap.aspx" class="login-icon">
+                    <i class="fa-solid fa-user"></i>
+                </a>
+            </div>
+        </div>
+        </header>
+        <main class="main">
+            <asp:ContentPlaceHolder ID="NoiDungChinh" runat="server" />
+        </main>
+
+        <footer class="footer">&copy; 2025 - Nhom cua ban</footer>
+    </form>
+</body>
+</html>
