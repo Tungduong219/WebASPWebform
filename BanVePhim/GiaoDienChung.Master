@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="GiaoDienChung.Master.cs" Inherits="BanVeXemPhim.GiaoDienChung" %>
+﻿ <%@ Master Language="C#" AutoEventWireup="true" CodeBehind="GiaoDienChung.Master.cs" Inherits="BanVeXemPhim.GiaoDienChung" %>
 
 <!DOCTYPE html>
 <html lang="vi">
@@ -36,6 +36,7 @@
 
             <nav class="menu">
                 <a runat="server" href="~/Phim/DanhSachPhim.aspx">Phim</a>
+                <a runat="server" href="~/DatVe/DatVe.aspx">Đặt Vé</a>
                 <a runat="server" href="~/Rap/RapChieu.aspx">Rạp chiếu</a>
                 <a runat="server" href="~/Phim/TopPhim.aspx">Top Phim</a>
                 <a runat="server" href="~/Blog/BlogPhim.aspx">Blog Phim</a>
