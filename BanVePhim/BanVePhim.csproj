@@ -152,10 +152,14 @@
     <Content Include="Content\bootstrap-grid.rtl.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <Content Include="TaiNguyen\HinhAnh\Caima.jpg" />
+    <Content Include="TaiNguyen\HinhAnh\Chocungdungsomini.jpg" />
     <Content Include="TaiNguyen\HinhAnh\cinehublogo.png" />
-    <Content Include="TaiNguyen\HinhAnh\logo.png" />
+    <Content Include="TaiNguyen\HinhAnh\cuc vang cua ngoai.jpg" />
+    <Content Include="TaiNguyen\HinhAnh\Cucvangcuangoaimini.jpg" />
+    <Content Include="TaiNguyen\HinhAnh\Dienthoaidenmini.jpg" />
+    <Content Include="TaiNguyen\HinhAnh\livereal.jpg" />
     <Content Include="TaiNguyen\HinhAnh\logonho.png" />
-    <Content Include="WebForm1.aspx" />
     <None Include="Scripts\jquery-3.7.0.intellisense.js" />
     <Content Include="Scripts\jquery-3.7.0.js" />
     <Content Include="Scripts\jquery-3.7.0.min.js" />
@@ -184,10 +188,21 @@
     <Content Include="Scripts\WebForms\WebParts.js" />
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="GiaoDienChung.Master" />
+    <Content Include="TaiNguyen\HinhAnh\Modomdommini.jpg" />
+    <Content Include="TaiNguyen\HinhAnh\MovieShinmini.jpg" />
+    <Content Include="TaiNguyen\HinhAnh\Nam_cua_anhmini.jpg" />
+    <Content Include="TaiNguyen\HinhAnh\NHA MA XO.jpg" />
+    <Content Include="TaiNguyen\HinhAnh\Nhamaxomini.jpg" />
+    <Content Include="TaiNguyen\HinhAnh\Phadamsinhnhatmemini.jpg" />
+    <Content Include="TaiNguyen\HinhAnh\Quaithuvohinhmini.jpg" />
+    <Content Include="TaiNguyen\HinhAnh\quyantangmini.jpg" />
+    <Content Include="TaiNguyen\HinhAnh\Toquoctrongtimmini.jpg" />
+    <Content Include="TaiNguyen\HinhAnh\Tuchientrenkhong.jpg" />
+    <Content Include="TaiNguyen\HinhAnh\Tuchientrenkhongmini.jpg" />
+    <Content Include="TaiNguyen\HinhAnh\Xathuattieutammini.jpg" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
-    <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -238,26 +253,12 @@
     <Compile Include="GiaoDienChung.Master.designer.cs">
       <DependentUpon>GiaoDienChung.Master</DependentUpon>
     </Compile>
-    <Compile Include="Site.Mobile.Master.cs">
-      <DependentUpon>Site.Mobile.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Site.Mobile.Master.designer.cs">
-      <DependentUpon>Site.Mobile.Master</DependentUpon>
-    </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="WebForm1.aspx.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="WebForm1.aspx.designer.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

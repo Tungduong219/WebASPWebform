@@ -1,6 +1,8 @@
 ﻿body {
     font-family: Arial, sans-serif;
-    margin: 0
+    margin: 0;
+    background-color: #fff;
+    color: #000;
 }
 
 .header {
@@ -15,10 +17,12 @@
     z-index: 100;
     box-shadow: 0 6px 16px rgba(0, 0, 0, .08);
     border-bottom: 1px solid rgba(0,0,0,.06);
+    margin-bottom: 10px;
+    margin-top: 5px;
 }
 
 .header-inner {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
     width: 100%;
     padding: 0 20px;
@@ -30,18 +34,16 @@
 
 
 .header .logo img {
-    height: 120px;
+    height: 40px;
     width: auto;
     display: block;
 }
 
-@media (max-width: 992px) {
+@media (max-width: 760px) {
     .header .logo img {
-        height: 60px;
+        height: 80px;
     }
 }
-
-
 
 .header .logo {
     display: flex;
@@ -51,7 +53,7 @@
 .menu {
     display: flex;
     align-items: center;
-    gap: 48px;
+    gap: 36px;
 }
 
     .menu a {
@@ -161,5 +163,429 @@
     }
 
 .main {
-    padding: 16px
+    padding: 0px
+}
+
+/* === CSS CHO BANNER SLIDER (HIỆU ỨNG TRƯỢT) === */
+.banner-slider {
+    position: relative;
+    width: 100%;
+    height: 500px; 
+    overflow: hidden;
+    background-color: #000;
+}
+
+.banner-slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* 1. Mặc định: Ẩn slide sang BÊN PHẢI */
+    transform: translateX(100%);
+    /* 2. Hiệu ứng trượt (thay vì opacity) */
+    transition: transform 0.6s ease-in-out;
+}
+
+    .banner-slide.active {
+        /* 3. Slide active: Đưa về vị trí 0 (chính giữa) */
+        transform: translateX(0);
+    }
+
+    .banner-slide.prev-slide {
+        /* 4. Trạng thái MỚI: Ẩn slide sang BÊN TRÁI */
+        transform: translateX(-100%);
+    }
+
+    .banner-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+.banner-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10; 
+
+    background-color: rgba(0, 0, 0, 0.3);
+    color: white;
+    border: none;
+    padding: 12px 16px;
+    font-size: 24px; /* Kích thước icon < > */
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+    .banner-btn:hover {
+        background-color: rgba(0, 0, 0, 0.6);
+    }
+
+    .banner-btn.prev {
+        left: 20px;
+    }
+
+    .banner-btn.next {
+        right: 20px;
+    }
+
+.banner-dots {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px; /* Khoảng cách giữa các nút chấm */
+    z-index: 10;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%; /* Bo tròn */
+    background-color: rgba(255, 255, 255, 0.5); /* Màu trắng mờ */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+    .dot:hover {
+        background-color: rgba(255, 255, 255, 0.8);
+    }
+
+    .dot.active {
+        background-color: #fff; /* Màu trắng rõ khi active */
+    }
+
+
+
+.khung-noi-dung-chinh {
+    max-width: 1400px;
+    margin: 40px auto;
+    padding: 0 20px;
+    color: #000;
+}
+
+
+.tieu-de-muc {
+    font-size: 28px;
+    color: #000;
+    border-bottom: 3px solid #e50914;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+    /* 3. Icon trong tiêu đề */
+    .tieu-de-muc i {
+        margin-right: 12px;
+        color: #e50914;
+    }
+
+/* 4. Cấu trúc 2 cột */
+.khu-vuc-hai-cot {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+}
+/* 5. Cột trái (Chứa phim) - THÊM CLASS NÀY */
+.cot-phim-ben-trai {
+    flex: 1; /* Tự chiếm phần lớn */
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+/* 6. Cột phải (Xếp hạng) */
+.muc-xep-hang {
+    width: 320px; /* Chiều rộng cố định */
+    flex-shrink: 0;
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+/* 7. Lưới Phim */
+.luoi-phim {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 cột */
+    gap: 20px;
+}
+
+/* 8. Thẻ Phim */
+.the-phim {
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* 9. Poster Phim */
+.poster-phim {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-top: 140%; /* Tỷ lệ khung hình dọc */
+}
+
+    .poster-phim img,
+    .poster-phim-gia {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 8px 8px 0 0;
+    }
+
+.poster-phim-gia {
+    background-color: #ccc; /* Sườn xám */
+}
+
+/* 10. Số Xếp Hạng */
+.so-xep-hang {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+    padding: 5px 12px;
+    border-radius: 5px;
+    line-height: 1;
+}
+
+/* 11. Thông tin phim */
+.thong-tin-phim {
+    padding: 15px;
+    border-top: 1px solid #eee;
+}
+
+/* 12. Tiêu đề phim */
+.tieu-de-phim {
+    font-size: 16px;
+    color: #000;
+    margin: 0 0 10px 0;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* 13. Giới hạn độ tuổi */
+.gioi-han-tuoi {
+    display: inline-block;
+    background-color: #0d6efd;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 3px 5px;
+    border-radius: 4px;
+    line-height: 1;
+}
+
+/* 14. Thông tin phụ (thời lượng, ngày) */
+.thong-tin-phu {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: #777;
+    border-top: 1px solid #eee;
+    padding-top: 10px;
+}
+
+/* 15. Bảng Xếp Hạng */
+.danh-sach-xep-hang {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+    .danh-sach-xep-hang li {
+        font-size: 16px;
+        padding: 10px 0;
+        border-bottom: 1px solid #ddd;
+    }
+
+        .danh-sach-xep-hang li:last-child {
+            border-bottom: none;
+        }
+
+        .danh-sach-xep-hang li a {
+            text-decoration: none;
+            color: #000;
+            display: block;
+        }
+
+            .danh-sach-xep-hang li a:hover {
+                color: #e50914;
+            }
+
+        .danh-sach-xep-hang li strong {
+            font-size: 20px;
+            color: #e50914;
+            margin-right: 10px;
+            width: 30px;
+            display: inline-block;
+        }
+
+/* === CSS CHO SLIDER PHIM === */
+
+/* 1. Khung chứa (cửa sổ) */
+.luoi-phim-container {
+    position: relative;
+    overflow: hidden;
+}
+
+/* 2. Lưới phim ĐANG CHIẾU (cho slider) */
+.phim-dang-chieu .luoi-phim {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr); /* 8 cột */
+    gap: 30px;
+    width: 200%; /* Rộng gấp đôi */
+    transition: transform 0.5s ease-in-out;
+    transform: translateX(0); /* Vị trí ban đầu */
+}
+
+/* 3. Lưới phim SẮP CHIẾU (tĩnh) */
+.phim-sap-chieu .luoi-phim {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Chỉ 4 cột */
+    gap: 25px;
+}
+
+
+/* 4. Nút bấm slider phim */
+.phim-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(calc(-50% - 12.5px)); /* Điều chỉnh nếu cần */
+    z-index: 5;
+    background-color: rgba(0, 0, 0, 0.4);
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, opacity 0.3s ease;
+    opacity: 0; /* Ẩn ban đầu */
+}
+
+/* Hiện nút khi hover */
+.luoi-phim-container:hover .phim-btn {
+    opacity: 1;
+}
+
+.phim-btn:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.phim-btn.prev {
+    left: 10px;
+}
+
+.phim-btn.next {
+    right: 10px;
+}
+
+/* 5. Class 'hidden' để ẩn nút */
+.phim-btn.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+/* === BẢNG XẾP HẠNG MỚI (STYLE THEO HÌNH 2) === */
+
+.danh-sach-xep-hang li {
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+    /* Không cần list-style nữa */
+}
+
+    .danh-sach-xep-hang li:last-child {
+        border-bottom: none;
+    }
+
+    .danh-sach-xep-hang li a {
+        text-decoration: none;
+        color: #000;
+        display: flex; /* Dùng flexbox để sắp xếp các thành phần */
+        align-items: center; /* Căn giữa theo chiều dọc */
+        gap: 10px; /* Khoảng cách giữa các thành phần */
+        padding: 5px 0; /* Padding nhẹ cho từng dòng */
+        transition: background-color 0.2s ease;
+    }
+
+        .danh-sach-xep-hang li a:hover {
+            color: #e50914; /* Màu hover cho toàn bộ dòng */
+            background-color: #ebebeb; /* Nền nhẹ khi hover */
+            border-radius: 4px;
+        }
+            /* Đảm bảo chỉ màu chữ của tên phim thay đổi khi hover, các thành phần khác giữ nguyên */
+            .danh-sach-xep-hang li a:hover .xep-hang-ten {
+                color: #e50914;
+            }
+
+
+.xep-hang-so {
+    font-size: 18px; /* Kích thước số thứ tự */
+    font-weight: bold;
+    color: #333; /* Màu chữ số */
+    width: 30px; /* Chiều rộng cố định cho số để thẳng hàng */
+    text-align: right; /* Căn phải số */
+    flex-shrink: 0; /* Không co lại */
+}
+
+.xep-hang-xu-huong {
+    font-size: 14px; /* Kích thước icon */
+    width: 20px; /* Chiều rộng cố định cho icon */
+    text-align: center;
+    flex-shrink: 0;
+}
+
+    .xep-hang-xu-huong.tang {
+        color: #28a745; /* Màu xanh lá cho tăng */
+    }
+
+    .xep-hang-xu-huong.giam {
+        color: #dc3545; /* Màu đỏ cho giảm */
+    }
+
+    .xep-hang-xu-huong.giu-nguyen {
+        color: #6c757d; /* Màu xám cho giữ nguyên */
+    }
+
+.xep-hang-poster {
+    width: 40px; /* Chiều rộng poster mini */
+    height: 56px; /* Chiều cao poster mini (tỷ lệ 1.4:1) */
+    overflow: hidden;
+    border-radius: 4px;
+    flex-shrink: 0; /* Không co lại */
+}
+
+    .xep-hang-poster img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+.xep-hang-poster-gia {
+    width: 100%;
+    height: 100%;
+    background-color: #ddd; /* Màu nền cho poster giả */
+}
+
+.xep-hang-ten {
+    font-size: 16px;
+    color: #000;
+    flex-grow: 1; /* Tên phim chiếm hết phần còn lại */
+    white-space: nowrap; /* Ngăn không cho tên phim xuống dòng */
+    overflow: hidden; /* Ẩn phần bị tràn */
+    text-overflow: ellipsis; /* Hiển thị dấu ba chấm nếu quá dài */
 }

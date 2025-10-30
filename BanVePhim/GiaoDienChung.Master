@@ -21,7 +21,160 @@
                 box.classList.toggle('active');
                 if (box.classList.contains('active')) box.focus();
             });
+
+            //code banner
+            const slider = document.querySelector('.banner-slider');
+
+            if (slider) {
+                const slides = slider.querySelectorAll('.banner-slide');
+                const btnPrev = document.getElementById('bannerBtnPrev');
+                const btnNext = document.getElementById('bannerBtnNext');
+                const dotsContainer = document.getElementById('bannerDots');
+
+                let currentSlide = 0;
+                let slideInterval;
+                let isTransitioning = false;
+
+                    //nút dots
+                slides.forEach((slide, index) => {
+                    const dot = document.createElement('span');
+                    dot.classList.add('dot');
+                    dot.dataset.index = index;
+                    if (index === 0) {
+                        dot.classList.add('active');
+                    }
+                    dotsContainer.appendChild(dot);
+                });
+
+                const dots = dotsContainer.querySelectorAll('.dot');
+
+                function showSlide(newIndex) {
+                    if (isTransitioning || newIndex === currentSlide) return;
+                    isTransitioning = true;
+
+                    let oldIndex = currentSlide;
+                    let direction = newIndex > oldIndex ? 'next' : 'prev';
+
+                    if (oldIndex === 0 && newIndex === slides.length - 1) {
+                        direction = 'prev';
+                    }
+                    if (oldIndex === slides.length - 1 && newIndex === 0) {
+                        direction = 'next';
+                    }
+
+                    currentSlide = newIndex;
+
+                    dots[oldIndex].classList.remove('active');
+                    dots[newIndex].classList.add('active');
+
+                    const oldSlide = slides[oldIndex];
+                    const newSlide = slides[newIndex];
+
+                    if (direction === 'next') {
+                        newSlide.classList.add('active');
+                        oldSlide.classList.remove('active');
+                        oldSlide.classList.add('prev-slide'); 
+                    } else { 
+                        newSlide.style.transition = 'none';
+                        newSlide.classList.add('prev-slide');
+                        void newSlide.offsetWidth;
+                        newSlide.style.transition = '';
+                        newSlide.classList.add('active');
+
+                        // 4. Đẩy slide cũ (đang ở 0) về bên phải (100%)
+                        oldSlide.classList.remove('active');
+                    }
+                    setTimeout(() => {
+                        if (direction === 'next') {
+                            oldSlide.style.transition = 'none';
+                            oldSlide.classList.remove('prev-slide');
+                            void oldSlide.offsetWidth;
+                            oldSlide.style.transition = '';
+                        } else {
+                            newSlide.classList.remove('prev-slide');
+                        }
+
+                        isTransitioning = false;
+                    }, 600);
+                }
+                function showNextSlide() {
+                    let nextIndex = (currentSlide + 1) % slides.length;
+                    showSlide(nextIndex);
+                }
+
+                function showPrevSlide() {
+                    let prevIndex = (currentSlide - 1 + slides.length) % slides.length;
+                    showSlide(prevIndex);
+                }
+
+                // --- 4. Hàm tự động chạy và reset ---
+                function startSlideShow() {
+                    clearInterval(slideInterval);
+                    slideInterval = setInterval(showNextSlide, 5000);
+                }
+
+                // --- 5. Gắn sự kiện cho Nút (< >) ---
+                btnNext.addEventListener('click', function () {
+                    showNextSlide();
+                    startSlideShow();
+                });
+
+                btnPrev.addEventListener('click', function () {
+                    showPrevSlide();
+                    startSlideShow();
+                });
+
+                // --- 6. Gắn sự kiện cho Nút Chấm (Dots) ---
+                dotsContainer.addEventListener('click', function (e) {
+                    if (e.target.classList.contains('dot')) {
+                        const index = Number(e.target.dataset.index);
+                        showSlide(index);
+                        startSlideShow();
+                    }
+                });
+                startSlideShow();
+            }
+            const phimSliderContainer = document.querySelector('.phim-dang-chieu .luoi-phim-container');
+
+            if (phimSliderContainer) {
+                const phimSliderGrid = phimSliderContainer.querySelector('.luoi-phim');
+                const phimBtnPrev = phimSliderContainer.querySelector('.phim-btn.prev');
+                const phimBtnNext = phimSliderContainer.querySelector('.phim-btn.next');
+
+                if (phimSliderGrid && phimBtnPrev && phimBtnNext) {
+                    let phimCurrentPage = 0;
+                    const phimTotalPages = 2; // 8 phim / 4 cột = 2 trang
+
+                    function updatePhimButtons() {
+                        phimBtnPrev.classList.toggle('hidden', phimCurrentPage === 0);
+                        phimBtnNext.classList.toggle('hidden', phimCurrentPage >= phimTotalPages - 1);
+                    }
+
+                    phimBtnNext.addEventListener('click', function () {
+                        if (phimCurrentPage < phimTotalPages - 1) {
+                            phimCurrentPage++;
+                            phimSliderGrid.style.transform = `translateX(-${phimCurrentPage * 50}%)`;
+                            updatePhimButtons();
+                        }
+                    });
+
+                    phimBtnPrev.addEventListener('click', function () {
+                        if (phimCurrentPage > 0) {
+                            phimCurrentPage--;
+                            phimSliderGrid.style.transform = `translateX(-${phimCurrentPage * 50}%)`;
+                            updatePhimButtons();
+                        }
+                    });
+
+                    updatePhimButtons(); // Cập nhật nút ban đầu
+                } else {
+                    console.error("Không tìm thấy đủ các thành phần cho slider phim.");
+                }
+            }
         });
+
+
+
     </script>
 
 <body>
@@ -37,7 +190,7 @@
             <nav class="menu">
                 <a runat="server" href="~/Phim/DanhSachPhim.aspx">Phim</a>
                 <a runat="server" href="~/DatVe/DatVe.aspx">Đặt Vé</a>
-                <a runat="server" href="~/Rap/RapChieu.aspx">Rạp chiếu</a>
+                <a runat="server" href="~/Rap/RapChieu.aspx">Rạp Chiếu</a>
                 <a runat="server" href="~/Phim/TopPhim.aspx">Top Phim</a>
                 <a runat="server" href="~/Blog/BlogPhim.aspx">Blog Phim</a>
                 <a runat="server" href="~/Review/ReviewPhim.aspx">Review Phim</a>
@@ -58,7 +211,7 @@
             <asp:ContentPlaceHolder ID="NoiDungChinh" runat="server" />
         </main>
 
-        <footer class="footer">&copy; 2025 - Nhom cua ban</footer>
+        <footer class="footer">&copy;2025 - Nhom cua ban</footer>
     </form>
 </body>
 </html>
